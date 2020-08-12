@@ -1,4 +1,4 @@
 export default interface IDownloadDTO {
-    url: string,
+    url: Array<string | undefined>,
     site: string,
 }
