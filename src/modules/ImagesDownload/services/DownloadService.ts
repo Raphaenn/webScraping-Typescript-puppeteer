@@ -5,7 +5,7 @@ import IApiRequest from "../providers/models/IApiRequest";
 import IDownlaodsRepository from "../repositories/IDownlaodsRepository"
 
 interface IRequest {
-    url: string;
+    url: string
 }
 
 @injectable()
@@ -24,7 +24,7 @@ class DownloadService {
         const imgArray = await this.apiResquest.registerImgData(url);
 
         await this.downloadSave.create({
-            url,
+            url: imgArray,
             site: url
         })
 

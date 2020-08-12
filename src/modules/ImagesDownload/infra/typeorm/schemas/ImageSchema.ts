@@ -9,7 +9,7 @@ class ImageSchema {
     site: string
 
     @Column()
-    url: Array<string | undefined>;
+    url: Array<string> | string;
 
     @CreateDateColumn()
     created_at: Date;

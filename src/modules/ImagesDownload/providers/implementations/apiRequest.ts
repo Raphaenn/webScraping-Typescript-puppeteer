@@ -24,21 +24,22 @@ class apiResquest implements IApiRequest {
 
             const imgList = await page.evaluate(() => {
                 const nodeList = document.querySelectorAll('article img')
+                console.log(nodeList)
                 const imgArray = Object.values(nodeList);
-
                 const list = imgArray.map(({src}: any) => ({ src }))
 
                 return list
             })
 
-            this.imgUrlarray.push(imgList)
-
-            for(let i = 0; i < 12; i++) {
+            this.imgUrlarray = Array.from(imgList)
+            for(let i = 0; i < this.imgUrlarray.length; i++) {
                 let imgPath = path.resolve(uploadConfig.tmpFolder, `image${i}.jpeg`);
                 let writer = fs.createWriteStream(imgPath);
-                Request(String(this.imgUrlarray[0][i].src)).pipe(writer)
+                Request(String(this.imgUrlarray[i].src)).pipe(writer)
             }
+
             await browser.close() 
+
         } catch(err) {
             console.log(err)
         }
